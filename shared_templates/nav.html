@@ -1,10 +1,10 @@
 <nav>
     {% load static %}
     <link rel="stylesheet" href="{% static "css/nav.css" %}">
-        <button id="navLogo">
-            <img src="IMAGES/feedevent-logo-noBg.png" alt="Logo de Feed Event">
-            <img id="logoFade" src="IMAGES/feedevent-logo-noBg-white.png" alt="Logo de Feed Event">
-        </button>
+        <a id="navLogo" href="/eventos/">
+            <img src="{% static "images/feedevent-logo-noBg.png" %}" alt="Logo de Feed Event">
+            <img id="logoFade" src="{% static "images/feedevent-logo-noBg-white.png" %}" alt="Logo de Feed Event">
+        </a>
         <div class="cont-menu-profile">
             <div class="usr-name">
                 <i class="fa-solid fa-user"></i>
