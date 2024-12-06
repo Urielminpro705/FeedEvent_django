@@ -3,4 +3,6 @@ from . import views
 
 app_name = "eventos"
 
-urlpatterns = []
+urlpatterns = [
+    path("", views.IndexView.as_view(), name="index")
+]
