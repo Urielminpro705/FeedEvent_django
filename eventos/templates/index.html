@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "index.css" %}">
+    <link rel="stylesheet" href="{% static "prefix.css" %}">
+    <title>FeedEvent - Inicio</title>
+</head>
+<body>
+    <main>
+        <article class="cont-search-bar">
+            <div class="cont-search-input">
+                <button id="searchEvents" class="search-btn btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <input type="text" id="search-input" placeholder="Buscar">
+            </div>
+            <button class="filter-btn btn">
+                <i class="fa-solid fa-x" id="filter-btn-x-icon"></i>
+                <i class="fa-solid fa-filter" id="filter-btn-filter-icon"></i>
+            </button>
+            <div class="cont-filters">
+                <div class="cont-filters-content">
+                    <p class="titleFilt">Agregar Filtros</p>
+                    <p class="filterTag bgTag3">Culturales</p>
+                    <p class="filterTag bgTag2">Solidarios</p>
+                    <p class="filterTag bgTag1">Deportivos</p>
+                </div>
+            </div>
+        </article>
+        <div class="cont-filters-on">
+            <!-- Aqui van los filtros -->
+        </div>
+
+        <div class="titulos">
+            <p>TODOS LOS EVENTOS</p>
+            <p>200 eventos encontrados</p>
+        </div>
+
+        <article id="eventList" class="cont-publicaciones">
+            <!-- Aqui van los eventos -->
+            
+        </article>
+    </main>
+
+    <audio id="bell1" preload>
+        <source src="AUDIOS/bell1.wav" type="audio/mpeg">
+    </audio>
+
+    <audio id="bell2" preload>
+        <source src="AUDIOS/bell2.wav" type="audio/mpeg">
+    </audio>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/5049a1cee4.js" crossorigin="anonymous"></script>
+</body>
+</html>

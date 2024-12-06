@@ -1,0 +1,245 @@
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cont-search-bar {
+    height: 45px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.cont-search-input {
+    width: 100%;
+    height: 100%;
+    background-color: var(--terciario);
+    border-radius: 23px;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 100%;
+    overflow: hidden;
+    border: transparent 2px solid;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+#search-input {
+    grid-column: 2;
+    border: none;
+    outline: none;
+    padding-left: 5px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    background-color: var(--terciario);
+    color: var(--secundario);
+}
+
+#search-input::placeholder {
+    color: var(--placeholder);
+}
+
+.search-btn {
+    grid-column: 1;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: var(--secundario);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--hover);
+}
+
+.btn:active {
+    background-color: var(--terciario);
+}
+
+.cont-search-input:focus-within {
+    border-color: var(--secundario);
+}
+
+.filter-btn {
+    height: 45px;
+    min-width: 45px;
+    border-radius: 23px;
+    border: none;
+    background-color: var(--terciario);
+    color: var(--secundario);
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.2s;
+}
+
+.filter-btn-activated {
+    border-radius: 0 23px 0 0px;
+    min-width: 55px;
+    margin: 0;
+}
+
+.cont-search-input-activated {
+    border-radius: 23px 0 0 0;
+}
+
+#filter-btn-x-icon {
+    display: none;
+}
+
+#filter-btn-filter-icon {
+    display: block;
+}
+
+.cont-filters {
+    width: 100%;
+    height: 45px;
+    background-color: transparent;
+    z-index: -1;
+    border-radius: 23px;
+    position: absolute;
+    transition: 0.3s;
+    padding-top: 50px;
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.titleFilt{
+    font-weight: 700;
+}
+
+.cont-filters-activated {
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid var(--terciario);
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.075);
+}
+
+.cont-filters-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 100%;
+}
+
+.filterTag{
+    margin: 0;
+    margin: 0 12px;
+    font-size: 0.85rem;
+    color: #fff;
+    background-color: var(--tag1);
+    padding: 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bgTag1{
+    background-color: var(--tag1);
+}
+.bgTag2{
+    background-color: var(--tag2);
+}
+.bgTag3{
+    background-color: var(--tag3);
+}
+
+.cont-filters-activated .cont-filters-content {
+    display: flex;
+}
+
+.cont-filters-on {
+    width: 600px;
+    height: auto;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    padding-inline: 20px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+.filter-card {
+    padding-left: 10px;
+    width: auto;
+    gap: 5px;
+    height: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--primario);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.filter-x-btn i {
+    font-size: 0.7rem;
+}
+
+.filter-x-btn {
+    border: none;
+    padding: 0;
+    height: 100%;
+    width: 25px;
+    background-color: transparent;
+    color: var(--primario);
+}
+
+.filter-x-btn:hover {
+    background-color: var(--hover_trans);
+}
+
+.cont-publicaciones {
+    width: 90%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 2%;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.titulos {
+    width: 90%;
+    margin-top: 30px;
+    color: var(--secundario);
+}
+
+.titulos p {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.titulos p:first-of-type {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@media(max-width: 680px){
+    .cont-search-bar {
+        height: 45px;
+        width: 90%;
+    }
+
+    .cont-filters-on {
+        width: 90%;
+        flex-wrap: wrap;
+    }
+
+    .cont-search-input {
+        grid-template-columns: 15% 85%;
+    }
+}
