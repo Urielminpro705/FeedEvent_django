@@ -1,0 +1,31 @@
+<nav>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/nav.css" %}">
+        <button id="navLogo">
+            <img src="IMAGES/feedevent-logo-noBg.png" alt="Logo de Feed Event">
+            <img id="logoFade" src="IMAGES/feedevent-logo-noBg-white.png" alt="Logo de Feed Event">
+        </button>
+        <div class="cont-menu-profile">
+            <div class="usr-name">
+                <i class="fa-solid fa-user"></i>
+                <p class="f09">Pepe</p>
+            </div>
+            <button id="navProfile">
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-x"></i>
+                <p class="f09">Pepe</p>
+            </button>
+            <ul class="cont-nav-menu">
+                <li>
+                    <a href="#"><i class="fa-solid fa-id-card"></i> Ver Perfil</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-calendar-day"></i> Actividades Pendientes</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
