@@ -10,6 +10,7 @@ class Evento(models.Model):
     culturales = models.IntegerField("Creditos culturales")
     deportivos = models.IntegerField("Creditos deportivos")
     fechaCreacion = models.DateTimeField("Fecha y hora de creacion")
+    imagen = models.ImageField(upload_to="imagenes_eventos/")
     idUsuario = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     horaInicio = models.CharField("Hora de inicio", max_length=10)
     horaFin = models.CharField("Hora de finalizacion", max_length=10)
