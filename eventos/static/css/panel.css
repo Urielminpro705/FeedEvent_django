@@ -1,0 +1,211 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.imp{
+    padding: 4px 0;
+    text-indent: 8px;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+}
+
+.cardForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 80%;
+    width: 90%; 
+}
+
+h1{
+    color: var(--placeholder);
+}
+
+#lblImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+    border: 2px solid var(--terciario);
+    border-radius: 5px;
+    color: var(--placeholder);
+    background-position: center;
+    background-size: cover;
+}
+
+#formEvent{
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    padding-bottom: 32px;
+    h2{
+        font-size: 1.1rem;
+        color: var(--placeholder);
+        margin-bottom: 0px;
+    }
+    .basicColumn{
+        gap: 8px;
+    }
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 5vh;
+    width: 100%;
+    padding-inline: 16px;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--terciario);
+}
+
+.navLink{
+    font-size: 0.8rem;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#userNav{
+    font-size: 0.9rem;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    height: 95vh;
+    width: 100%;
+}
+
+aside{
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    width: 15%;
+    padding-top: 16px;
+    border-right: 1px solid var(--terciario);
+    box-sizing: border-box;
+}
+
+.grayLine{
+    margin: 4px 0;
+    height: 1px;
+    width: 100%;
+    background-color: var(--terciario);
+}
+
+.asideLink{
+    font-size: 0.8rem;
+    width: 80%;
+    margin: 0;
+    font-weight: 600;
+    color: var(--placeholder);
+}
+
+.asideLink:hover{
+    color: var(--tag2);
+    cursor: pointer;
+}
+
+.sectionCard{
+    height: 100%;
+    flex: 1;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.sectionTitle{
+    margin: 0;
+}
+
+.optionsRow{
+    height: 32px;
+    width: fit-content;
+    position: relative;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    .btnNoBg{
+        font-weight: 600;
+        color: var(--placeholder);
+        padding: 0;
+        transition: all 0.3s ease-in-out;
+        user-select: none;
+    }
+    .sel{
+        color: var(--tag1);
+    }
+}
+
+.optionsSel{
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    width: 41px;
+    background-color: var(--tag1);
+    transition: all 0.2s ease-in-out;
+}
+
+#btnNewEvent{
+    user-select: none;
+    font-size: 0.8rem;
+    padding-inline: 8px;
+    font-weight: 600;
+    color: rgb(74, 74, 74);
+    background-color: var(--terciario);
+}
+
+#btnNewEvent:hover{
+    color: #fff;
+    border-color: var(--tag2);
+    background-color: var(--tag2);
+}
+
+#eventList{
+    height: auto;
+    width: 100%;
+    .loading{
+        margin-top: 64px;
+    }
+}
+
+.eventItem{
+    border-bottom: 1px solid var(--terciario);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 0.5rem 0;
+    p{
+        margin: 0;
+    }
+    .btnEventRemove{
+        border-color: var(--tag1);
+        border-radius: 5px;
+        background: none;
+        color: var(--tag1);
+    }
+    .btnEventRemove:hover{
+        color: #fff;
+        cursor: pointer;
+        background-color: var(--tag1);
+    }
+}

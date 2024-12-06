@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es_mx">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/prefix.css" %}">
+    <link rel="stylesheet" href="{% static "css/panel.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="shortcut icon" href="{% static "images/icon.png" %}" type="image/x-icon">
+    <title>Feed Event | Panel</title>
+</head>
+<body>
+    <nav>
+        <a href="/eventos/" class="navLink basicBtnLine">Salir del panel</a>
+        <p id="userNav">Pepe</p>
+    </nav>
+    <div id="contModal" class="basicContModal" style="display: none;">
+        <div id="modal" class="basicModal" style="animation-duration: 0.5s;">
+        </div>
+    </div>
+    <main>
+        <aside>
+            <p style="font-weight: 600; font-size: 0.8rem; width:80%;">Opciones del panel</p>
+            <p class="asideLink">Mis Eventos</p>
+            <!-- <p class="asideLink">Asistencias</p> -->
+        </aside>
+        <section id="secMyEvents" class="sectionCard">
+            <div class="basicHeader">
+                <h2 class="sectionTitle">Mis Eventos</h2>
+                <div id="btnNewEvent" class="basicBtn2"><i class="fa-solid fa-plus"></i> Añadir Un Evento Nuevo</div>
+            </div>
+            <div class="optionsRow">
+                <div class="optionsSel"></div>
+                <button class="btnNoBg sel">Todos</button>
+                <button class="btnNoBg">Eventos Actuales</button>
+                <button class="btnNoBg">Eventos Pasados</button>
+            </div>
+            <div class="grayLine"></div>
+            <div id="eventList">
+
+            </div>
+        </section>
+    </main>
+    
+</body>
+<script src="https://kit.fontawesome.com/5049a1cee4.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static "js/panel.js" %}"></script>
+</html>

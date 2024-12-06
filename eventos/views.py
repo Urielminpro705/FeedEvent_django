@@ -9,3 +9,10 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Evento.objects.all()
+
+class PanelView(generic.ListView):
+    template_name = "panel.html"
+    context_object_name = "eventos_del_usuario"
+
+    def get_queryset(self):
+        return Evento.objects.filter(idUsuario = 1)
