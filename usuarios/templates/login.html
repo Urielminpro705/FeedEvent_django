@@ -10,6 +10,7 @@
 </head>
 <body>
     <main>
+        {{ feedID }}
         <div class="mainSection">
             <div id="contVideo" class="sombra">
                 <div id="textVideo">
@@ -22,7 +23,7 @@
         </div>
         <div class="mainSection">
             <img id="logo" src="{% static "images/feedevent-logo-noBg.png" %}" height="100" alt="">
-            <form id="formReg" class="login" style="transform: translateX(95%); opacity: 0;">
+            {% comment %} <form id="formReg" class="login" style="transform: translateX(95%); opacity: 0;">
                 <h2>Registrar una Nueva Cuenta</h2>
                 <p>¿Ya tienes una cuenta? <a id="linkLog">Iniciar Sesión</a></p>
                 <input class="basicImp3" name="nombre" id="impNombre" type="text" placeholder="Nombre de Usuario" required>
@@ -43,8 +44,9 @@
                     </select>
                 </div>
                 <button class="basicBtn2" type="submit">Registrarse</button>
-            </form>
+            </form> {% endcomment %}
             <form id="formLogin" class="login" action="PHP/Sessions/login.php" method="POST">
+                {% csrf_token %}
                 <h2>Iniciar Sesión</h2>
                 <p>¿No tienes una cuenta? <a id="linkReg" >Registrarse</a></p>
                 <input class="basicImp1" name="correo" type="email" placeholder="Correo electrónico" required>
