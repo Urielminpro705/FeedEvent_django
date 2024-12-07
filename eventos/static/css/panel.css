@@ -32,7 +32,7 @@ h1{
     align-items: center;
     justify-content: center;
     height: 200px;
-    width: 200px;
+    width: 100%;
     border: 2px solid var(--terciario);
     border-radius: 5px;
     color: var(--placeholder);
@@ -52,6 +52,7 @@ h1{
     }
     .basicColumn{
         gap: 8px;
+        width: 45%;
     }
 }
 

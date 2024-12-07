@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/prefix.css" %}">
+    <link rel="stylesheet" href="{% static "css/publicacion.css" %}">
+    <link rel="shortcut icon" href="{% static "images/icon.png" %}" type="image/x-icon">
+    <title>Evento | Feed Event</title>
+</head>
+<body>
+    {% include "nav.html" %}
+    <main>
+        <div class="img-publicacion" style="background-image: url({{ evento.imagen.url }});"></div>
+        <div class="cont-info-publicacion">
+            <h1>{{ evento.titulo }}</h1>
+            <div class="cont-tags">
+                {% if evento.deportivos > 0 %}
+                    <div class="publicacion-tag tag1"><span>{{ evento.deportivos }}</span>Deportivos</div>
+                {% endif %}
+                {% if evento.solidarios > 0 %}
+                    <div class="publicacion-tag tag2"><span>{{ evento.solidarios }}</span>Solidarios</div>
+                {% endif %}
+                {% if evento.culturales %}
+                    <div class="publicacion-tag tag3"><span>{{ evento.culturales }}</span>Culturales</div>
+                {% endif %}
+            </div>
+            <p class="descripcion-titulo">Descripción</p>
+            <p class="descripcion-txt">{{ evento.descr }}</p>
+            <button id="btn-registro" data-id="">
+                Registrarse
+            </button>
+        </div>
+        <div class="cont-list cont-detalles-publicacion">
+            <p>Detalles</p>
+            <ul>
+                <li>
+                    <span>Código de actividad:</span>{{ evento.id }}
+                </li>
+                <li>
+                    <span>Requisitos:</span>{{ evento.requisitos }}
+                </li>
+                <li>
+                    <span>Fecha:</span>{{ evento.cuando }}
+                </li>
+                <li>
+                    <span>Hora de entrada:</span>{{ evento.horaInicio }}
+                </li>
+                <li>
+                    <span>Hora de salida:</span>{{ evento.horaFin }}
+                </li>
+            </ul>
+        </div>
+        <div class="cont-list cont-contactos-publicacion">
+            <p>Contactos</p>
+            <ul>
+                {% if evento.culturales > 0 %}
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Oficina de cultura:</span>cultura@gmail.com
+                    </li>
+                {% endif %}
+                {% if evento.deportivos > 0 %}
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Oficina de deportes</span>deportes@gmail.com
+                    </li>
+                {% endif %}
+                {% if evento.solidarios > 0 %}
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Oficina de solidaridad</span>solidaridad@gmail.com
+                    </li>
+                {% endif %}
+                <li>
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Correo del administrador</span>admin@gmail.com
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/nav.js" %}"></script>
+    <script src="https://kit.fontawesome.com/5049a1cee4.js" crossorigin="anonymous"></script>
+</body>
+</html>

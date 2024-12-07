@@ -43,8 +43,41 @@
 
         <article id="eventList" class="cont-publicaciones">
             <!-- Aqui van los eventos -->
-            {% if lista_todos_los_eventos %}
-            
+            {% if eventos %}
+                {% for evento in eventos %}
+                    <div class="card-publicacion">
+                        <div class="cont-img" style="background-image: url({{ evento.imagen.url }});">
+                            <div class="cont-publicacion-tags">
+                                <!--Aqui van los tags de la publicacion-->
+                                {% if evento.deportivos > 0 %}
+                                    <div class="publicacion-tag tag1"><span>{{ evento.deportivos }}</span>Deportivos</div>
+                                {% endif %}
+                                {% if evento.solidarios > 0 %}
+                                    <div class="publicacion-tag tag2"><span>{{ evento.solidarios }}</span>Solidarios</div>
+                                {% endif %}
+                                {% if evento.culturales %}
+                                    <div class="publicacion-tag tag3"><span>{{ evento.culturales }}</span>Culturales</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p class="publicacion-titulo">{{ evento.titulo }}</p>
+                        <p class="publicacion-desc">{{ evento.descr|truncatechars:50 }}</p>
+                        <p class="publicacion-fecha">
+                            <i class="fa-solid fa-calendar"></i>
+                            {{ evento.cuando }}
+                        </p>
+                        <p class="publicacion-hora">
+                            <i class="fa-solid fa-clock"></i>
+                            {{ evento.horaInicio }} - {{evento.horaFin}}
+                        </p>
+                        <a class="card-publicacion-btn" href="{% url "eventos:evento" evento.id %}">
+                            <p>Ver más información</p>
+                            <p>...</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay eventos</p>
             {% endif %}
         </article>
     </main>

@@ -1,95 +1,105 @@
 let currentEventIndex = 0;
 let lastCurrentEventIndex = -1;
-
 $(document).ready(function(){
 
     //#region //* Subir un evento
+    
+
+    // function getCookie(name) {
+    //     let cookieValue = null;
+    //     if (document.cookie && document.cookie !== '') {
+    //         const cookies = document.cookie.split(';');
+    //         for (let i = 0; i < cookies.length; i++) {
+    //             const cookie = cookies[i].trim();
+    //             // Busca el nombre del cookie
+    //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+    //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return cookieValue;
+    // }    
+    
+    // const csrfToken2 = getCookie('csrftoken');
 
     $('#btnNewEvent').on('click',function(){
-        showModal('\
-            <form id="formEvent" class="cardForm"> \
-                    <div class="basicColumn"> \
-                        <h2>Añadir Nuevo Evento</h2>\
-                        <input type="file" hidden id="impImage" name="imagen" required> \
-                        <label id="lblImage" for="impImage"><i class="fa-solid fa-image"></i></label> \
-                        <input type="text" id="titulo" name="titulo" class="imp" placeholder="Titulo"> \
-                        <input type="text" id="desc" name="desc" class="imp" placeholder="Descripción"> \
-                    </div>\
-                    <div class="basicColumn"> \
-                        <label for="" class="f08">Fecha del evento:</label> \
-                        <input type="date" class="imp" name="cuando" id="cuando"> \
-                        <input type="number" id="deport" name="deport" class="imp" placeholder="Deportivos"> \
-                        <input type="number" id="cult" name="cult" class="imp" placeholder="Culturales"> \
-                        <input type="number" id="solid" name="solid" class="imp" placeholder="Solidarios"> \
-                            <div class="basicRow"> \
-                                <button type="submit" class="basicBtn">Subir Actividad</button> \
-                                <button type="button" class="basicBtn btnRemoveModal">Cancelar</button>\
-                            </div> \
-                    </div> \
-            </form>')
+        let tokenInput = $("input[name='csrfmiddlewaretoken']")
+        const csrfToken = tokenInput.val();
+        tokenInput.remove();
+        showModal(`
+            <form id="formEvent" class="cardForm" enctype="multipart/form-data"> 
+                <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}"> 
+                <div class="basicColumn"> 
+                    <h2>Añadir Nuevo Evento</h2>
+                    <input type="file" hidden id="impImage" name="imagen"> 
+                    <label id="lblImage" for="impImage"><i class="fa-solid fa-image"></i></label> 
+                    <input type="text" id="titulo" name="titulo" class="imp" placeholder="Titulo", required> 
+                    <input type="text" id="desc" name="desc" class="imp" placeholder="Descripción" required> 
+                </div>\
+                <div class="basicColumn"> \
+                    <label for="" class="f08">Fecha del evento:</label> 
+                    <input type="date" class="imp" name="cuando" id="cuando" required> 
+                    <label for="horaInicio" class="f08">Hora de inicio:</label> 
+                    <input type="time" class="imp" name="horaInicio" id="horaInicio" required> 
+                    <label for="horaFin" class="f08">Hora de finalizacion:</label> 
+                    <input type="time" class="imp" name="horaFin" id="horaFin" required> 
+                    <textarea type="textarea" class="imp" name="requisitos" id="requisitos" placeholder="Requisitos"></textarea>
+                    <input type="number" id="deport" name="deport" class="imp" placeholder="Deportivos" min="0" max="30"> 
+                    <input type="number" id="cult" name="cult" class="imp" placeholder="Culturales" min="0" max="30"> 
+                    <input type="number" id="solid" name="solid" class="imp" placeholder="Solidarios" min="0" max="30"> 
+                        <div class="basicRow"> 
+                            <button type="submit" class="basicBtn">Subir Actividad</button> 
+                            <button type="button" class="basicBtn btnRemoveModal">Cancelar</button>
+                        </div> 
+                </div> 
+            </form>`)
     });
 
-    // $('#modal').on('submit','#formEvent', function(e){
-    //     e.preventDefault();
-    //     let formData = new FormData(this);
-    //     console.log(formData);
-        
-    //     $.ajax({ 
-    //         url: 'PHP/Panel/uploadEvent.php',
-    //         type: 'POST',
-    //         data: formData,
-    //         contentType: false,
-    //         processData: false,
-    //         success: function(res) {
-    //             console.log(res);
-    //             loadEventos(true);
-    //             showModal('\
-    //                 <h3>¡Se subío el evento con exito</h3>\
-    //                 <button type="button" class="basicBtn btnRemoveModal">Ok</button>\
-    //                 ');
-    //         },
-    //         error: function (jqXHR, textStatus, errorThrown) {
-    //             console.log("Error en la solicitud AJAX:");
-    //             console.log("Status: " + textStatus);
-    //             console.log("Error lanzado: " + errorThrown);
-    
-    //             console.log(jqXHR.responseText);
-    //             alert("Error en la conección");
-    //         }
-    //     })
-    // });
-    
-    // $('#modal').on('change','#impImage',function(){
-    //     let objetivo = $('#lblImage');
-    //     const archivo = $(this).get(0).files[0];
-    //     let vistaPrevia = objetivo;
-    //     const texto = objetivo.find('.fa-solid');
-    //     if (archivo) {
-    //         const lector = new FileReader();
-    //         lector.onload = function(event) {
-    //             vistaPrevia.css('backgroundImage', 'url(' + event.target.result + ')');
-    //             texto.hide();
-    //         }
-    //         lector.readAsDataURL(archivo);
-    //     }
-    // });
-
-    function VistaPrevia(id, yo) {
-        let objetivo = $('#img-option-'+id);
-        const archivo = yo.get(0).files[0];
-        let vistaPrevia = objetivo;
+    // Vista previa de la imagen
+    $("#modal").on("change", "#impImage",function() {
+        let objetivo = $('#lblImage');
+        const file = $(this).get(0).files[0];
+        const preview = objetivo;
         const texto = objetivo.find('.fa-solid');
-        if (archivo) {
+        if(file){
             const lector = new FileReader();
             lector.onload = function(event) {
-                vistaPrevia.css('backgroundImage', 'url(' + event.target.result + ')');
+                preview.css('backgroundImage', 'url(' + event.target.result + ')');
                 texto.hide();
             }
-            lector.readAsDataURL(archivo);
-        } else {
-            // No hay archivo seleccionado. Si quieres hacer algo en este caso, puedes agregar el código aquí.
+            lector.readAsDataURL(file);
         }
-    }
+    })
+
+    $('#modal').on('submit','#formEvent', function(e){
+        e.preventDefault();
+        let formData = new FormData(this);
+        console.log(formData);
+        $.ajax({
+            url: "/eventos/agregar/",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                console.log(res);
+                showModal('\
+                    <h3>¡Se subío el evento con exito</h3>\
+                    <button type="button" class="basicBtn btnRemoveModal">Ok</button>\
+                    ');
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error en la solicitud AJAX:");
+                console.log("Status: " + textStatus);
+                console.log("Error lanzado: " + errorThrown);
+    
+                console.log(jqXHR.responseText);
+                alert("Error en la conección");
+            }
+        });
+    });
+
     //#endregion
     //#region //* Cargar eventos
     // loadEventos();

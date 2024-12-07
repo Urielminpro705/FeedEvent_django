@@ -4,6 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <meta name="csrf-token" content="{{ csrf_token }}"> {% endcomment %}
     <link rel="stylesheet" href="{% static "css/prefix.css" %}">
     <link rel="stylesheet" href="{% static "css/panel.css" %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -11,6 +12,7 @@
     <title>Feed Event | Panel</title>
 </head>
 <body>
+    {% csrf_token %}
     <nav>
         <a href="/eventos/" class="navLink basicBtnLine">Salir del panel</a>
         <p id="userNav">Pepe</p>
@@ -38,7 +40,7 @@
             </div>
             <div class="grayLine"></div>
             <div id="eventList">
-
+                
             </div>
         </section>
     </main>
