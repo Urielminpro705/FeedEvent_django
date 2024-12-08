@@ -8,16 +8,16 @@
         <div class="cont-menu-profile">
             <div class="usr-name">
                 <i class="fa-solid fa-user"></i>
-                <p class="f09">Pepe</p>
+                <p class="f09">{{ CURRENT_USER.nombre }}</p>
             </div>
             <button id="navProfile">
                 <i class="fa-solid fa-user"></i>
                 <i class="fa-solid fa-x"></i>
-                <p class="f09">Pepe</p>
+                <p class="f09">{{ CURRENT_USER.nombre }}</p>
             </button>
             <ul class="cont-nav-menu">
                 <li>
-                    <a href="#"><i class="fa-solid fa-id-card"></i> Ver Perfil</a>
+                    <a href="{% url 'usuarios:profile' %}"><i class="fa-solid fa-id-card"></i> Ver Perfil</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa-solid fa-calendar-day"></i> Actividades Pendientes</a>

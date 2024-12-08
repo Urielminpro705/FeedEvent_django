@@ -45,7 +45,7 @@
                 </div>
                 <button class="basicBtn2" type="submit">Registrarse</button>
             </form> {% endcomment %}
-            <form id="formLogin" class="login" action="PHP/Sessions/login.php" method="POST">
+            <form id="formLogin" class="login" method="POST">
                 {% csrf_token %}
                 <h2>Iniciar Sesión</h2>
                 <p>¿No tienes una cuenta? <a id="linkReg" >Registrarse</a></p>
@@ -58,14 +58,14 @@
                     <div class="line"></div>
                 </div>
                 <div class="basicRowB" style="display: none;">
-                    <div class="brandBtn">
+                    {% comment %} <div class="brandBtn">
                         <img src="IMAGES/googleIcon.webp" height="30" alt="">
                         <p>Google</p>
                     </div>
                     <div class="brandBtn">
                         <img src="IMAGES/cosmobiusIcon.PNG" height="30" alt="">
                         <p>Cosmobius</p>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </form>
         </div>

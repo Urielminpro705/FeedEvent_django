@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/prefix.css">
-    <link rel="stylesheet" href="CSS/perfil.css">
+    <link rel="stylesheet" href="{% static "css/prefix.css" %}">
+    <link rel="stylesheet" href="{% static "css/perfil.css" %}">
     <title>Perfil | Feed Event</title>
 </head>
 <body>
@@ -21,33 +22,34 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
             </div>
-            <p id="nombre-txt"><?= $userName; ?></p>
+            <p id="nombre-txt">{{ CURRENT_USER.nombre }}</p>
             <div class="opcion-item">
                 <p>Nombre</p>
                 <div class="info-cont">
                     <i class="fa-solid fa-user"></i>
-                    <?= $userName ?>
+                    {{ CURRENT_USER.nombre }}
                 </div>
             </div>
             <div class="opcion-item">
                 <p>Correo electronico</p>
                 <div class="info-cont">
                     <i class="fa-solid fa-envelope"></i>
-                    <?= $userMail; ?>
+                    {{ CURRENT_USER.correo }}
                 </div>
             </div>
             <div class="opcion-item">
                 <p>Carrera</p>
                 <div class="info-cont">
                     <i class="fa-solid fa-book"></i>
-                    Biomedica
+                    {{ CURRENT_USER.carrera }}
                 </div>
             </div>
         </div>
     </main>
     <script src="https://kit.fontawesome.com/5049a1cee4.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="JS/nav.js?v=<?php include 'PHP/globalVersion.php'; ?>"></script>
-    <script src="JS/perfil.js?v=<?php include 'PHP/globalVersion.php'; ?>"></script>
+    <script src="{% static "js/nav.js" %}"></script>
+    {% comment %} <script src="JS/nav.js?v=<?php include 'PHP/globalVersion.php'; ?>"></script>
+    <script src="JS/perfil.js?v=<?php include 'PHP/globalVersion.php'; ?>"></script> {% endcomment %}
 </body>
 </html>
