@@ -25,6 +25,6 @@ class ProfileView(View):
         return render(request, "profile.html")
 
 class LogoutView(View):
-    def get():
-        
-        print('hola')
+    def get(self, request):
+        request.session['feedID'] = None;
+        return redirect('eventos:index')
