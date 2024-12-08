@@ -9,5 +9,6 @@ urlpatterns = [
     path("<int:evento_id>/", views.EventoView, name="evento"),
     path("agregar/", views.AgregarEvento, name="agregarEvento"),
     path("panel/", views.Panel, name="panel"),
-    path("eliminar/<int:evento_id>", views.EliminarEvento)
+    path("eliminar/<int:evento_id>", views.EliminarEvento, name="eliminar"),
+    path("editar/<int:evento_id>", views.ActualizarEvento, name="actualizar")
 ]

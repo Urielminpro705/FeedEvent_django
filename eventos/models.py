@@ -27,3 +27,12 @@ class Evento(models.Model):
                 os.remove(self.imagen.path)
         
         super().delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            old_instance = Evento.objects.get(pk=self.pk)
+            if old_instance.imagen != self.imagen:
+                if old_instance.imagen and os.path.isfile(old_instance.imagen.path):
+                    os.remove(old_instance.imagen.path)
+        
+        super().save(*args, **kwargs)

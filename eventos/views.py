@@ -102,5 +102,20 @@ def AgregarEvento(request):
             horaFin=horaFin,
             fechaCreacion=fechaCreacion
         )
-        return HttpResponse("OK", status=200)
+        return HttpResponse("Evento creado correctamente", status=200)
+    return HttpResponse("Método no permitido", status=405)
+
+def ActualizarEvento(request, evento_id):
+    evento = get_object_or_404(Evento, pk=evento_id)
+    if request.method == 'POST':
+        imagen = request.FILES.get("imagen")
+        descr = request.POST.get("desc")
+
+        if not imagen:
+            imagen = evento.imagen
+        
+        evento.imagen = imagen
+        evento.descr = descr
+        evento.save()
+        return HttpResponse("Evento actualizado correctamente", status=200)
     return HttpResponse("Método no permitido", status=405)

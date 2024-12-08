@@ -11,15 +11,32 @@ body{
     text-indent: 8px;
     border: 1px solid darkgray;
     border-radius: 3px;
+    width: 100%;
+}
+
+textarea.imp {
+    max-width: 100%;
+    height: 100px;
+    resize: vertical;
 }
 
 .cardForm{
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 80%;
     width: 90%; 
+    height: auto;
+    flex-direction: row;
+    padding-bottom: 32px;
+    h2{
+        font-size: 1.1rem;
+        color: var(--placeholder);
+        margin-bottom: 0px;
+    }
+    .basicColumn{
+        gap: 8px;
+        width: 45%;
+    }
 }
 
 h1{
@@ -38,22 +55,6 @@ h1{
     color: var(--placeholder);
     background-position: center;
     background-size: cover;
-}
-
-#formEvent{
-    display: flex;
-    height: auto;
-    flex-direction: row;
-    padding-bottom: 32px;
-    h2{
-        font-size: 1.1rem;
-        color: var(--placeholder);
-        margin-bottom: 0px;
-    }
-    .basicColumn{
-        gap: 8px;
-        width: 45%;
-    }
 }
 
 nav{
@@ -226,10 +227,22 @@ aside{
         align-content: center;
         box-sizing: border-box;
         font-weight: 500;
+        font-size: 0.8rem;
+        cursor: pointer;
     }
 
     .btnEventDetails:hover {
         background-color: var(--secundario);
+        color: var(--primario);
+    }
+
+    .btnEventEditar {
+        border-color: var(--tag2_hard);
+        color: var(--tag2_hard);
+    }
+
+    .btnEventEditar:hover {
+        background-color: var(--tag2_hard);
         color: var(--primario);
     }
 }
