@@ -48,6 +48,9 @@
                 {% csrf_token %}
                 <h2>Iniciar Sesión</h2>
                 <p>¿No tienes una cuenta? <a id="linkReg" >Registrarse</a></p>
+                {% if request.GET.error == '1' %}
+                    <p style="color: red; margin: 0px; font-size: 12px;">Los datos ingresados no corresponden a ninguna cuenta.</p>
+                {% endif %}
                 <input class="basicImp1" name="correo" type="email" placeholder="Correo electrónico" required>
                 <input class="basicImp2" name="pass" type="password" placeholder="Contraseña" required>
                 <button class="basicBtn2" type="submit">Iniciar Sesión</button>

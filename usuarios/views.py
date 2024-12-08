@@ -4,6 +4,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from .models import Usuario
 from django.shortcuts import render
+from django.urls import reverse
 
 # Create your views here.
 class LoginView(View):
@@ -14,11 +15,11 @@ class LoginView(View):
         email = request.POST.get("correo")
         password = request.POST.get("pass")
         user = Usuario.objects.filter(correo=email).first()
-        if(password == user.password):
+        if user and password == user.password:
             request.session['feedID'] = user.id
             return redirect('usuarios:profile')
         else:
-            return redirect('usuarios:login')
+            return HttpResponseRedirect(f"{reverse('usuarios:login')}?error=1")
 
 class ProfileView(View):
     def get(self, request):
