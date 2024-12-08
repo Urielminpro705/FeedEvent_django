@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/prefix.css" %}">
+    <link rel="stylesheet" href="{% static "css/actividades_inscritas.css" %}">
+    <link rel="shortcut icon" href="{% static "images/icon.png" %}" type="image/x-icon">
+    <title>Actividades | Feed Event</title>
+</head>
+<body>
+    {% include "nav.html" %}
+    <main>
+        <h1>Registros a eventos</h1>
+        <!-- <div class="cont-publicaciones-por-fecha">
+            <div class="cont-publicaciones">
+                <div class="card-publicacion">
+                    <div class="cont-img"></div>
+                    <p class="publicacion-titulo">Evento epiquisimo demasiado epico wow que epico</p>
+                    <p class="publicacion-fecha">
+                        <i class="fa-solid fa-calendar"></i>
+                        12/09/2024
+                    </p>
+                    <p class="publicacion-hora">
+                        <i class="fa-solid fa-clock"></i>
+                        2:00 pm - 5:00 pm
+                    </p>
+                    <div class="cont-publicacion-tags">
+                        <div class="publicacion-tag tag1">Deportivos</div>
+                        <div class="publicacion-tag tag2">Culturales</div>
+                        <div class="publicacion-tag tag3">Solidarios</div>
+                    </div>
+                    <a class="card-publicacion-btn" href="publicacion.html">
+                        <p>Ver más información</p>
+                        <p>...</p>
+                    </a>
+                </div>
+                <div class="card-publicacion">
+                    <div class="cont-img"></div>
+                    <p class="publicacion-titulo">Evento epiquisimo demasiado epico wow que epico</p>
+                    <p class="publicacion-fecha">
+                        <i class="fa-solid fa-calendar"></i>
+                        12/09/2024
+                    </p>
+                    <p class="publicacion-hora">
+                        <i class="fa-solid fa-clock"></i>
+                        2:00 pm - 5:00 pm
+                    </p>
+                    <div class="cont-publicacion-tags">
+                        <div class="publicacion-tag tag1">Deportivos</div>
+                        <div class="publicacion-tag tag2">Culturales</div>
+                        <div class="publicacion-tag tag3">Solidarios</div>
+                    </div>
+                    <a class="card-publicacion-btn" href="publicacion.html">
+                        <p>Ver más información</p>
+                        <p>...</p>
+                    </a>
+                </div>
+                <div class="card-publicacion">
+                    <div class="cont-img"></div>
+                    <p class="publicacion-titulo">Evento epiquisimo demasiado epico wow que epico</p>
+                    <p class="publicacion-fecha">
+                        <i class="fa-solid fa-calendar"></i>
+                        12/09/2024
+                    </p>
+                    <p class="publicacion-hora">
+                        <i class="fa-solid fa-clock"></i>
+                        2:00 pm - 5:00 pm
+                    </p>
+                    <div class="cont-publicacion-tags">
+                        <div class="publicacion-tag tag1">Deportivos</div>
+                        <div class="publicacion-tag tag2">Culturales</div>
+                        <div class="publicacion-tag tag3">Solidarios</div>
+                    </div>
+                    <a class="card-publicacion-btn" href="publicacion.html">
+                        <p>Ver más información</p>
+                        <p>...</p>
+                    </a>
+                </div>
+            </div>
+            <div class="fecha-txt">
+                <p>Eventos del dia</p>
+                <p>17 - 10 - 2024</p>
+            </div>
+        </div>
+        <div class="cont-publicaciones-por-fecha">
+            <div class="cont-publicaciones">
+                <div class="card-publicacion">
+                    <div class="cont-img"></div>
+                    <p class="publicacion-titulo">Evento epiquisimo demasiado epico wow que epico</p>
+                    <p class="publicacion-fecha">
+                        <i class="fa-solid fa-calendar"></i>
+                        12/09/2024
+                    </p>
+                    <p class="publicacion-hora">
+                        <i class="fa-solid fa-clock"></i>
+                        2:00 pm - 5:00 pm
+                    </p>
+                    <div class="cont-publicacion-tags">
+                        <div class="publicacion-tag tag1">Deportivos</div>
+                        <div class="publicacion-tag tag2">Culturales</div>
+                        <div class="publicacion-tag tag3">Solidarios</div>
+                    </div>
+                    <a class="card-publicacion-btn" href="publicacion.html">
+                        <p>Ver más información</p>
+                        <p>...</p>
+                    </a>
+                </div>
+            </div>
+            <div class="fecha-txt">
+                <p>Eventos del dia</p>
+                <p>17 - 10 - 2024</p>
+            </div>
+        </div>
+        <div class="cont-publicaciones-por-fecha">
+            <div class="cont-publicaciones">
+                <div class="card-publicacion">
+                    <div class="cont-img"></div>
+                    <p class="publicacion-titulo">Evento epiquisimo demasiado epico wow que epico</p>
+                    <p class="publicacion-fecha">
+                        <i class="fa-solid fa-calendar"></i>
+                        12/09/2024
+                    </p>
+                    <p class="publicacion-hora">
+                        <i class="fa-solid fa-clock"></i>
+                        2:00 pm - 5:00 pm
+                    </p>
+                    <div class="cont-publicacion-tags">
+                        <div class="publicacion-tag tag1">Deportivos</div>
+                        <div class="publicacion-tag tag2">Culturales</div>
+                        <div class="publicacion-tag tag3">Solidarios</div>
+                    </div>
+                    <a class="card-publicacion-btn" href="publicacion.html">
+                        <p>Ver más información</p>
+                        <p>...</p>
+                    </a>
+                </div>
+            </div>
+            <div class="fecha-txt">
+                <p>Eventos del dia</p>
+                <p>17 - 10 - 2024</p>
+            </div>
+        </div> -->
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/nav.js" %}"></script>
+    <script src="https://kit.fontawesome.com/5049a1cee4.js" crossorigin="anonymous"></script>
+</body>
+</html>
