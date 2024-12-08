@@ -64,7 +64,7 @@
                         <p class="publicacion-desc">{{ evento.descr|truncatechars:50 }}</p>
                         <p class="publicacion-fecha">
                             <i class="fa-solid fa-calendar"></i>
-                            {{ evento.cuando }}
+                            {{ evento.cuando|date:"d-m-Y" }}
                         </p>
                         <p class="publicacion-hora">
                             <i class="fa-solid fa-clock"></i>

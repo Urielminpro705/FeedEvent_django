@@ -203,10 +203,38 @@ aside{
         border-radius: 5px;
         background: none;
         color: var(--tag1);
+        height: 30px;
+        width: 30px;
+        padding: 0;
     }
     .btnEventRemove:hover{
         color: #fff;
         cursor: pointer;
         background-color: var(--tag1);
     }
+
+    .btnEventDetails{
+        border: 2px black solid;
+        border-color: var(--secundario);
+        border-radius: 5px;
+        background: none;
+        color: var(--secundario);
+        text-decoration: none;
+        height: 30px;
+        padding: 0;
+        padding-inline: 10px;
+        align-content: center;
+        box-sizing: border-box;
+        font-weight: 500;
+    }
+
+    .btnEventDetails:hover {
+        background-color: var(--secundario);
+        color: var(--primario);
+    }
+}
+
+.eventBtns {
+    display: flex;
+    gap: 10px;
 }

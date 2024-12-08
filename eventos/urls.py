@@ -8,5 +8,6 @@ urlpatterns = [
     path("busqueda/", views.busqueda, name="busqueda"),
     path("<int:evento_id>/", views.EventoView, name="evento"),
     path("agregar/", views.AgregarEvento, name="agregarEvento"),
-    path("panel/", views.PanelView.as_view(), name="panel")
+    path("panel/", views.Panel, name="panel"),
+    path("eliminar/<int:evento_id>", views.EliminarEvento)
 ]

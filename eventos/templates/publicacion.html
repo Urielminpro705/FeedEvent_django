@@ -42,7 +42,7 @@
                     <span>Requisitos:</span>{{ evento.requisitos }}
                 </li>
                 <li>
-                    <span>Fecha:</span>{{ evento.cuando }}
+                    <span>Fecha:</span>{{ evento.cuando|date:"d-m-Y" }}
                 </li>
                 <li>
                     <span>Hora de entrada:</span>{{ evento.horaInicio }}

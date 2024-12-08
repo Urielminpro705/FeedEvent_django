@@ -4,6 +4,7 @@ from django.views import generic
 from .models import Evento
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils import timezone
+from datetime import datetime
 
 class IndexView(generic.ListView):
     template_name = "index.html"
@@ -27,13 +28,26 @@ def busqueda(request):
     context = {"eventos":eventos}
     return render(request, "index.html", context)
 
-class PanelView(generic.ListView):
-    template_name = "panel.html"
-    context_object_name = "eventos_del_usuario"
+def Panel(request):
+    ahora = timezone.localtime().now()  # Obtiene la fecha y hora local actuales
+    eventos = Evento.objects.all()
+    eventos_pasados = []
+    eventos_actuales = []
 
-    def get_queryset(self):
-        return Evento.objects.all()
-    
+    for evento in eventos:
+        fecha_hora_evento = datetime.combine(evento.cuando, evento.horaInicio)
+
+        if fecha_hora_evento <= ahora:
+            eventos_pasados.append(evento)
+        else:
+            eventos_actuales.append(evento)
+
+    context = {
+        "eventos_pasados": eventos_pasados,
+        "eventos_actuales": eventos_actuales,
+    }
+    return render(request, "panel.html", context)
+
 def EventoView(request, evento_id):
     evento = get_object_or_404(Evento, pk=evento_id)
     context = {"evento":evento}
@@ -41,6 +55,7 @@ def EventoView(request, evento_id):
 
 def EliminarEvento(request, evento_id):
     evento = get_object_or_404(Evento, pk=evento_id)
+    evento.delete()
     return redirect("eventos:panel")
 
 def AgregarEvento(request):
@@ -50,7 +65,7 @@ def AgregarEvento(request):
         cuando = request.POST.get("cuando")
         horaInicio = request.POST.get("horaInicio")
         horaFin = request.POST.get("horaFin")
-        fechaCreacion = timezone.now()
+        fechaCreacion = timezone.localtime().now()
         imagen = request.FILES.get("imagen")
         requisitos = request.POST.get("requisitos")
 

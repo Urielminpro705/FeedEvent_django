@@ -23,10 +23,10 @@ $(document).ready(function(){
     
     // const csrfToken2 = getCookie('csrftoken');
 
+    let tokenInput = $("input[name='csrfmiddlewaretoken']")
+    const csrfToken = tokenInput.val();
+    tokenInput.remove();
     $('#btnNewEvent').on('click',function(){
-        let tokenInput = $("input[name='csrfmiddlewaretoken']")
-        const csrfToken = tokenInput.val();
-        tokenInput.remove();
         showModal(`
             <form id="formEvent" class="cardForm" enctype="multipart/form-data"> 
                 <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}"> 
@@ -72,6 +72,7 @@ $(document).ready(function(){
         }
     })
 
+    // Publicar evento sin recargar pagina
     $('#modal').on('submit','#formEvent', function(e){
         e.preventDefault();
         let formData = new FormData(this);
@@ -102,35 +103,22 @@ $(document).ready(function(){
 
     //#endregion
     //#region //* Cargar eventos
-    // loadEventos();
-
-    // function loadEventos(force = false){
-    //     if(currentEventIndex == lastCurrentEventIndex && force == false){return;}
-    //     $('#eventList').empty();
-    //     $('#eventList').append('<div class="loading"></div>');
-    //     switch (currentEventIndex) {
-    //         case 0:
-    //             $.get('PHP/Panel/importMyEvents.php',function(res){
-    //                 $('#eventList').empty();
-    //                 $('#eventList').append(res);
-    //             })    
-    //         break;
-    //         case 1:
-    //             $.get('PHP/Panel/importMyCurrentEvents.php',function(res){
-    //                 $('#eventList').empty();
-    //                 $('#eventList').append(res);
-    //             })
-    //         break;
-    //         case 2:
-    //             $.get('PHP/Panel/importMyLastEvents.php',function(res){
-    //                 $('#eventList').empty();
-    //                 $('#eventList').append(res);
-    //             })
-    //         break;
-    //     }
-    //     console.log("SE: ",currentEventIndex);
-    //     lastCurrentEventIndex = currentEventIndex;
-    // }
+    function loadEventos(){
+        switch(currentEventIndex){
+            case 0:
+                $("#oldEventList").show()
+                $("#pendingEventList").show()
+                break;
+            case 1:
+                $("#oldEventList").hide()
+                $("#pendingEventList").show()
+                break;
+            case 2:
+                $("#oldEventList").show()
+                $("#pendingEventList").hide()
+                break;
+        }
+    }
 
     //#endregion
     //#region //* Cambiar tipo de evento
@@ -170,27 +158,17 @@ $(document).ready(function(){
     //#endregion
     //#region //* Borrar Evento
     $('#eventList').on('click','.btnEventRemove',function(){
-        let eventId = this.dataset.id;
+        let eventoId = this.dataset.id;
         let titulo = $(this).prev().text();
-        showModal('\
-            <h3>Desea borrar el evento "'+titulo+'"?</h3>\
-            <div class="basicRow">\
-                <button class="basicBtn btnRemEvent" data-id="'+eventId+'">Aceptar</button>\
-                <button class="basicBtn btnRemoveModal">Cancelar</button>\
-            </div>\
-        ');
+        showModal(`
+            <h3>Desea borrar el evento ${titulo}?</h3>
+            <div class="basicRow">
+                <a class="basicBtn" href="/eventos/eliminar/${eventoId}">Aceptar</a>
+                <button class="basicBtn btnRemoveModal">Cancelar</button>
+            </div>
+        `);
     })
 
-    $('#modal').on('click','.btnRemEvent',function(){
-        let eventId = this.dataset.id;
-
-        $.post('Php/Panel/removeEvent.php',{id: eventId},function(res){
-            $('#modal h3').text(res);
-            $('#modal .btnRemoveModal').text('Ok');
-            loadEventos(true);
-            $('#modal .btnRemEvent').hide();
-        })
-    })
     //#endregion
 
     function showModal(content){
@@ -202,5 +180,6 @@ $(document).ready(function(){
 
     $('#modal').on('click','.btnRemoveModal',function(){
         $('#contModal').fadeOut(200);
+        location.reload();
     })
 });

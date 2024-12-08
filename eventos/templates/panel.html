@@ -40,7 +40,32 @@
             </div>
             <div class="grayLine"></div>
             <div id="eventList">
-                
+                <div id="pendingEventList">
+                    {% for evento in eventos_actuales %}
+                        <div class="eventItem">
+                            <p>{{ evento.titulo }}</p>
+                            <div class="eventBtns">
+                                <a href="{% url "eventos:evento" evento.id %}" class="btnEventDetails">Ver publicación</a>
+                                <button class="btnEventRemove" data-id="{{ evento.id }}">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div id="oldEventList">
+                    {% for evento in eventos_pasados %}
+                        <div class="eventItem">
+                            <p>{{ evento.titulo }}</p>
+                            <div class="eventBtns">
+                                <a href="{% url "eventos:evento" evento.id %}" class="btnEventDetails">Ver publicación</a>
+                                <button class="btnEventRemove" data-id="{{ evento.id }}">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </section>
     </main>
