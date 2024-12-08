@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Evento.objects.all()
 
-def busqueda(request):
+def Busqueda(request):
     solidarios = request.GET.get("solidarios", 0)
     culturales = request.GET.get("culturales", 0)
     deportivos = request.GET.get("deportivos", 0)
