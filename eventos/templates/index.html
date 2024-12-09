@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "css/prefix.css" %}">
     <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <link rel="shortcut icon" href="{% static "images/icon.png" %}" type="image/x-icon">
     <title>FeedEvent - Inicio</title>
 </head>
 <body>
@@ -25,9 +26,9 @@
             <div class="cont-filters">
                 <div class="cont-filters-content">
                     <p class="titleFilt">Agregar Filtros</p>
-                    <p class="filterTag bgTag3">Culturales</p>
-                    <p class="filterTag bgTag2">Solidarios</p>
-                    <p class="filterTag bgTag1">Deportivos</p>
+                    <button class="filterTag bgTag3" data-id="3">Culturales</button>
+                    <button class="filterTag bgTag2" data-id="2">Solidarios</button>
+                    <button class="filterTag bgTag1" data-id="1">Deportivos</button>
                 </div>
             </div>
         </article>
@@ -37,12 +38,47 @@
 
         <div class="titulos">
             <p>TODOS LOS EVENTOS</p>
-            <p>200 eventos encontrados</p>
+            <p>{{ eventos|length }} eventos encontrados</p>
         </div>
 
         <article id="eventList" class="cont-publicaciones">
             <!-- Aqui van los eventos -->
-            
+            {% if eventos %}
+                {% for evento in eventos %}
+                    <div class="card-publicacion">
+                        <div class="cont-img" style="background-image: url({{ evento.imagen.url }});">
+                            <div class="cont-publicacion-tags">
+                                <!--Aqui van los tags de la publicacion-->
+                                {% if evento.deportivos > 0 %}
+                                    <div class="publicacion-tag tag1"><span>{{ evento.deportivos }}</span>Deportivos</div>
+                                {% endif %}
+                                {% if evento.solidarios > 0 %}
+                                    <div class="publicacion-tag tag2"><span>{{ evento.solidarios }}</span>Solidarios</div>
+                                {% endif %}
+                                {% if evento.culturales %}
+                                    <div class="publicacion-tag tag3"><span>{{ evento.culturales }}</span>Culturales</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p class="publicacion-titulo">{{ evento.titulo }}</p>
+                        <p class="publicacion-desc">{{ evento.descr|truncatechars:50 }}</p>
+                        <p class="publicacion-fecha">
+                            <i class="fa-solid fa-calendar"></i>
+                            {{ evento.cuando|date:"d-m-Y" }}
+                        </p>
+                        <p class="publicacion-hora">
+                            <i class="fa-solid fa-clock"></i>
+                            {{ evento.horaInicio }} - {{evento.horaFin}}
+                        </p>
+                        <a class="card-publicacion-btn" href="{% url "eventos:evento" evento.id %}">
+                            <p>Ver más información</p>
+                            <p>...</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay eventos</p>
+            {% endif %}
         </article>
     </main>
 
