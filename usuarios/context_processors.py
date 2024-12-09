@@ -7,6 +7,7 @@ def global_vars(request):
         user.nombre = "Iniciar Sesión"
     else:
         user = Usuario.objects.filter(id=feed_id).first()
+
     return {
         'feedID' : feed_id,
         'CURRENT_USER' : user

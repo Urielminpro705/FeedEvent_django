@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
 from .models import Evento
+from usuarios.models import Usuario
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils import timezone
 from datetime import datetime
@@ -29,8 +30,16 @@ def Busqueda(request):
     return render(request, "index.html", context)
 
 def Panel(request):
-    ahora = timezone.localtime().now()  # Obtiene la fecha y hora local actuales
-    eventos = Evento.objects.all()
+    usuario = request.session.get("CURRENT_USER")
+    if not usuario:
+        return redirect('usuarios:login')
+    
+    if not usuario.admin:
+        return redirect('eventos:index')
+
+
+    ahora = timezone.localtime().now()
+    eventos = Evento.objects.filter(Usuario=usuario)
     eventos_pasados = []
     eventos_actuales = []
 
@@ -54,11 +63,23 @@ def EventoView(request, evento_id):
     return render(request, "publicacion.html", context)
 
 def EliminarEvento(request, evento_id):
+    usuario = request.session.get("CURRENT_USER")
+    if not usuario:
+        return redirect("eventos:index")
+    if not usuario.admin:
+        return redirect("eventos:index")
+
     evento = get_object_or_404(Evento, pk=evento_id)
-    evento.delete()
+    if evento.Usuario == usuario:
+        evento.delete()
     return redirect("eventos:panel")
 
 def AgregarEvento(request):
+    usuario = request.session.get("CURRENT_USER")
+    if not usuario:
+        return HttpResponse("No hay una sesion iniciada", status=403)
+    if not usuario.admin:
+        return HttpResponse("El usuario no tiene los permisos", status=403)
     if request.method =='POST':
         titulo = request.POST.get("titulo")
         descr = request.POST.get("desc")
@@ -100,13 +121,21 @@ def AgregarEvento(request):
             imagen=imagen,
             horaInicio=horaInicio,
             horaFin=horaFin,
+            Usuario = usuario,
             fechaCreacion=fechaCreacion
         )
         return HttpResponse("Evento creado correctamente", status=200)
     return HttpResponse("Método no permitido", status=405)
 
 def ActualizarEvento(request, evento_id):
+    usuario = request.session.get("CURRENT_USER")
+    if not usuario:
+        return HttpResponse("No hay una sesion iniciada", status=403)
+    if not usuario.admin:
+        return HttpResponse("El usuario no tiene los permisos", status=403)
     evento = get_object_or_404(Evento, pk=evento_id)
+    if evento.Usuario != usuario:
+        return HttpResponse("El usuario no es dueño del evento", status=403)
     if request.method == 'POST':
         imagen = request.FILES.get("imagen")
         descr = request.POST.get("desc")
