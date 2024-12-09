@@ -25,28 +25,13 @@
             <form id="formLogin" class="login" method="POST">
                 {% csrf_token %}
                 <h2>Iniciar Sesión</h2>
-                <p>¿No tienes una cuenta? <a id="linkReg" >Registrarse</a></p>
+                <p>¿No tienes una cuenta? <a id="linkReg" href="{% url "usuarios:register" %}">Registrarse</a></p>
                 {% if request.GET.error == '1' %}
                     <p style="color: red; margin: 0px; font-size: 12px;">Los datos ingresados no corresponden a ninguna cuenta.</p>
                 {% endif %}
                 <input class="basicImp1" name="correo" type="email" placeholder="Correo electrónico" required>
                 <input class="basicImp2" name="pass" type="password" placeholder="Contraseña" required>
                 <button class="basicBtn2" type="submit">Iniciar Sesión</button>
-                <div class="basicRowB" style="display: none;">
-                    <div class="line"></div>
-                    <p>Registrarse con</p>
-                    <div class="line"></div>
-                </div>
-                <div class="basicRowB" style="display: none;">
-                    {% comment %} <div class="brandBtn">
-                        <img src="IMAGES/googleIcon.webp" height="30" alt="">
-                        <p>Google</p>
-                    </div>
-                    <div class="brandBtn">
-                        <img src="IMAGES/cosmobiusIcon.PNG" height="30" alt="">
-                        <p>Cosmobius</p>
-                    </div> {% endcomment %}
-                </div>
             </form>
         </div>
     </main>

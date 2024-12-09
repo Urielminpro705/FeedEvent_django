@@ -22,21 +22,45 @@ class LoginView(View):
             return HttpResponseRedirect(f"{reverse('usuarios:login')}?error=1")
         
 def RegisterView(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         nombre = request.POST.get("nombre")
         correo = request.POST.get("correo")
         password = request.POST.get("password")
+        password2 = request.POST.get("password2")
         carrera = request.POST.get("carrera")
 
-        requerimientos = [nombre, correo, password, carrera]
+        requerimientos = [
+            ["Nombre", nombre],
+            ["correo", correo], 
+            ["password", password], 
+            ["confirmar contraseñas", password2], 
+            ["carrera", carrera]
+        ]
 
-        for requerimiento in requerimientos:
-            if not requerimiento:
-                HttpResponse(request, f'El campo "{requerimiento}"')
+        usuario_correo = Usuario.objects.filter(correo=correo).first()
+
+        if usuario_correo:
+            return render(request,"register.html", {"mensaje": "Ya existe un usuario con ese correo"})
+
+        for campo, valor in requerimientos:
+            if not valor:
+                # return HttpResponse(f'El campo "{campo}" es obligatorio', status=400)
+                return render(request, "register.html", {"mensaje": f'El campo "{campo}" es obligatorio'})
+
+        if password != password2:
+            # return HttpResponse("Las contraseñas no coinciden", status=400)
+            return render(request, "register.html", {"mensaje": "Las contraseñas no coinciden"})
 
         Usuario.objects.create(
-            
+            nombre = nombre,
+            correo = correo,
+            password = password,
+            carrera = carrera
         )
+
+        return render(request, "login.html")
+    else:
+        return render(request, "register.html")
 
 class ProfileView(View):
     def get(self, request):
