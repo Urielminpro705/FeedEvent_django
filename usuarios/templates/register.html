@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/prefix.css" %}">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+    <title>Nueva cuenta | Feed Event</title>
+</head>
+<body>
+    <main>
+        <div class="mainSection">
+            <div id="contVideo" class="sombra">
+                <div id="textVideo">
+                    <h1>Encuentra tus eventos.</h1>
+                </div>
+                <video id="videoBanner" autoplay loop muted>
+                    <source src="{% static "videos/sportVideo.mp4" %}">
+                </video>    
+            </div>
+        </div>
+        <div class="mainSection">
+            <img id="logo" src="{% static "images/feedevent-logo-noBg.png" %}" height="100" alt="">
+            <form id="formReg" class="login" style="transform: translateX(95%); opacity: 0;">
+                {% csrf_token %}
+                <h2>Registrar una Nueva Cuenta</h2>
+                <p>¿Ya tienes una cuenta? <a id="linkLog">Iniciar Sesión</a></p>
+                <input class="basicImp3" name="nombre" id="impNombre" type="text" placeholder="Nombre de Usuario" required>
+                <input class="basicImp1" name="correo" id="impEmail" type="email" placeholder="Correo electrónico" required>
+                <input id="pass1" class="basicImp2" name="pass" type="password" placeholder="Contraseña" required>
+                <input id="pass2" class="basicImp3" name="pass2" type="password" placeholder="Confirmar contraseña" required>
+                <p id="warning" style="display: none;">¡Las contraseñas, no son iguales!</p>
+                <select id="impCarrera" name="" class="basicImp3">
+                    <option value="" disabled selected>Seleccione su carrera</option>
+                    <option value="Ingenieria en desarrollo de Software">Ingenieria en desarrollo de Software</option>
+                </select>
+                <button class="basicBtn2" type="submit">Registrarse</button>
+            </form>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/login.js" %}"></script>
+</body>
+</html>

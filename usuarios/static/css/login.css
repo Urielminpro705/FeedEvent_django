@@ -68,6 +68,7 @@ main{
     transform: translateX(0px);
     border-radius: 10px;
     transition: all 0.9s ease-in-out;
+    overflow: auto;
     h2{
         font-size: 2rem;
         margin-bottom: 0px;

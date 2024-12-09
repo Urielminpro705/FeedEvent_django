@@ -20,6 +20,23 @@ class LoginView(View):
             return redirect('usuarios:profile')
         else:
             return HttpResponseRedirect(f"{reverse('usuarios:login')}?error=1")
+        
+def RegisterView(request):
+    if request.method == "POST":
+        nombre = request.POST.get("nombre")
+        correo = request.POST.get("correo")
+        password = request.POST.get("password")
+        carrera = request.POST.get("carrera")
+
+        requerimientos = [nombre, correo, password, carrera]
+
+        for requerimiento in requerimientos:
+            if not requerimiento:
+                HttpResponse(request, f'El campo "{requerimiento}"')
+
+        Usuario.objects.create(
+            
+        )
 
 class ProfileView(View):
     def get(self, request):
@@ -27,5 +44,5 @@ class ProfileView(View):
 
 class LogoutView(View):
     def get(self, request):
-        request.session['feedID'] = None;
+        request.session['feedID'] = None
         return redirect('eventos:index')
