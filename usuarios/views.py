@@ -17,7 +17,7 @@ class LoginView(View):
         user = Usuario.objects.filter(correo=email).first()
         if user and password == user.password:
             request.session['feedID'] = user.id
-            return redirect('usuarios:profile')
+            return redirect('eventos:index')
         else:
             return HttpResponseRedirect(f"{reverse('usuarios:login')}?error=1")
         
