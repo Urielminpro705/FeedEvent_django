@@ -17,7 +17,7 @@
         {% for grupo in lista_grupos %}
             <div class="cont-publicaciones-por-fecha">
                 <div class="cont-publicaciones">
-                    {% for evento in grupo %}
+                    {% for evento in grupo.list %}
                         <div class="card-publicacion">
                             <div class="cont-img" style="background-image: url({{ evento.imagen.url }});">
                                 <div class="cont-publicacion-tags">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="fecha-txt">
                     <p>Eventos del dia</p>
-                    <p>{{ evento.cuando|date:"d - m - Y" }}</p>
+                    <p>{{ grupo.grouper|date:"d - m - Y" }}</p>
                 </div>
             </div>
         {% endfor %}

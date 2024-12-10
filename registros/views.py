@@ -7,11 +7,12 @@ from django.urls import reverse
 
 # Create your views here.
 def Registros(request):
-    usuario = request.session.get("CURRENT_USER")
+    usuario_id = request.session.get("feedID")
+    usuario = Usuario.objects.filter(id = usuario_id).first()
     eventos = []
     if usuario:
         registros = Registro.objects.filter(idUsuario=usuario)
-        eventos = registros.evento_set.order_by("-cuando")
+        eventos = Evento.objects.filter(registro__idUsuario=usuario).order_by("-cuando")
     context = {
         "eventos": eventos
     }
@@ -33,6 +34,10 @@ def NuevoRegistro(request, evento_id):
         
         usuario = get_object_or_404(Usuario, pk=id_usuario)
         evento = get_object_or_404(Evento, pk=id_evento)
+
+        registros = Registro.objects.filter(idUsuario=usuario, idEvento=evento).first()
+        if registros:
+            return HttpResponse("El usuario ya esta registrado a ese evento", status=409)
 
         Registro.objects.create(
             idUsuario = usuario,

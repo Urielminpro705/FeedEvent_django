@@ -38,7 +38,7 @@
                     Inscrito
                 </div>
             {% else %}
-                <button id="btn-registro" data-id="{{ CURRENT_USER.id }}">
+                <button id="btn-registro" data-id="{{ CURRENT_USER.id }}" data-idEvento="{{ evento.id }}">
                     Registrarse
                 </button>
             {% endif %}

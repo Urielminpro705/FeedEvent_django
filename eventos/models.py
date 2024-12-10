@@ -23,8 +23,9 @@ class Evento(models.Model):
     
     def delete(self, *args, **kwargs):
         if self.imagen:
-            if os.path.isfile(self.imagen.path):
-                os.remove(self.imagen.path)
+            if self.imagen != "imagenes_eventos/imagen_default_evento.webp":
+                if os.path.isfile(self.imagen.path):
+                    os.remove(self.imagen.path)
         
         super().delete(*args, **kwargs)
 

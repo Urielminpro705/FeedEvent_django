@@ -26,10 +26,12 @@ $(document).ready(function(){
     })
 
     $("#modal").on("click","#btn-confirmar-registro", function (){
+        id_evento = $("#btn-registro").data("idevento")
         id_usuario = $("#btn-registro").data("id")
         console.log(csrfToken)
+        console.log(id_evento)
         $.ajax({
-            url: "/registros/registro/" + id_usuario,
+            url: "/registros/registro/" + id_evento,
             method: "POST",
             data: {
                 "id_usuario": id_usuario,
