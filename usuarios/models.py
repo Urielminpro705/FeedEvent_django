@@ -4,7 +4,7 @@ from django.db import models
 class Usuario(models.Model):
     nombre = models.CharField("Nombre del usuario", max_length=50, null=False)
     correo = models.CharField("Correo electronico", max_length=50, null=False)
-    password = models.CharField("Contraseña del usuario", max_length=10, null=False)
+    password = models.CharField("Contraseña del usuario", max_length=30, null=False)
     carrera = models.CharField("Carrera del usuario", max_length=50, default="")
     admin = models.BooleanField("Es cuenta de adminsitrador", default=False)
     superUser = models.BooleanField("Es cuenta de Super usuario", default=False)
