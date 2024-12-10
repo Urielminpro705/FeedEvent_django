@@ -60,7 +60,7 @@
                             <p>{{ evento.titulo }}</p>
                             <div class="eventBtns">
                                 <a href="{% url "eventos:evento" evento.id %}" class="btnEventDetails">Ver publicación</a>
-                                <a href="{% url "eventos:evento" evento.id %}" class="btnEventDetails">Asistencia</a>
+                                <a href="{% url "registros:asistencia" evento.id %}" class="btnEventDetails">Asistencia</a>
                                 <button class="btnEventDetails btnEventEditar" data-imagen="{{ evento.imagen }}" data-descr="{{ evento.descr }}" data-id="{{ evento.id }}">Editar</button>
                                 <button class="btnEventRemove" data-id="{{ evento.id }}">
                                     <i class="fa-regular fa-trash-can"></i>

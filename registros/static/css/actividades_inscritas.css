@@ -75,10 +75,16 @@ main {
     height: 70%;
 }
 
+.cont-publicaciones-por-fecha:first-of-type:last-of-type .fecha-txt::before{
+    display: none;
+}
+
 .cont-publicaciones-por-fecha:last-of-type .fecha-txt::before{
     top: 0;
     height: 50%;
 }
+
+
 
 .fecha-txt p:last-of-type {
     font-size: 1.5rem;
