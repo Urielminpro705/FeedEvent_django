@@ -6,3 +6,4 @@ from eventos.models import Evento
 class Registro(models.Model):
     idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     idEvento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    asistencia = models.BooleanField("Asistencia al evento", null=False, blank=False, default=0)
