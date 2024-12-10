@@ -5,7 +5,7 @@ class Usuario(models.Model):
     nombre = models.CharField("Nombre del usuario", max_length=50)
     correo = models.CharField("Correo electronico", max_length=50)
     password = models.CharField("Contraseña del usuario", max_length=10)
-    carrera = models.CharField("Carrera del usuario", max_length=20, default="")
+    carrera = models.CharField("Carrera del usuario", max_length=50, default="")
     admin = models.BooleanField("Es cuenta de adminsitrador", default=False)
     superUser = models.BooleanField("Es cuenta de Super usuario", default=False)
 
