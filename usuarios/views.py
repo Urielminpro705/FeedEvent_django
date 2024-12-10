@@ -98,7 +98,7 @@ class GrantSuperUserView(View):
         if not usuario:
             return HttpResponse("El usuario no existe.", status=200)
         
-        usuario.superUser = True
+        usuario.admin = True
         usuario.save()
 
         return HttpResponse("¡Los permisos se han otorgado correctamente!", status=404)
