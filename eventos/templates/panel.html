@@ -15,7 +15,7 @@
     {% csrf_token %}
     <nav>
         <a href="/eventos/" class="navLink basicBtnLine">Salir del panel</a>
-        <p id="userNav">Pepe</p>
+        <p id="userNav">{{ CURRENT_USER.nombre }}</p>
     </nav>
     <div id="contModal" class="basicContModal" style="display: none;">
         <div id="modal" class="basicModal" style="animation-duration: 0.5s;">
@@ -24,8 +24,7 @@
     <main>
         <aside>
             <p style="font-weight: 600; font-size: 0.8rem; width:80%;">Opciones del panel</p>
-            <p class="asideLink">Mis Eventos</p>
-            <!-- <p class="asideLink">Asistencias</p> -->
+            <a class="asideLink" href="{% url "eventos:panel" %}">Mis Eventos</a>
         </aside>
         <section id="secMyEvents" class="sectionCard">
             <div class="basicHeader">
@@ -46,6 +45,7 @@
                             <p>{{ evento.titulo }}</p>
                             <div class="eventBtns">
                                 <a href="{% url "eventos:evento" evento.id %}" class="btnEventDetails">Ver publicación</a>
+                                <a href="{% url "registros:asistencia" evento.id %}" class="btnEventDetails">Asistencia</a>
                                 <button class="btnEventDetails btnEventEditar" data-imagen="{{ evento.imagen }}" data-descr="{{ evento.descr }}" data-id="{{ evento.id }}">Editar</button>
                                 <button class="btnEventRemove" data-id="{{ evento.id }}">
                                     <i class="fa-regular fa-trash-can"></i>
@@ -60,6 +60,7 @@
                             <p>{{ evento.titulo }}</p>
                             <div class="eventBtns">
                                 <a href="{% url "eventos:evento" evento.id %}" class="btnEventDetails">Ver publicación</a>
+                                <a href="{% url "eventos:evento" evento.id %}" class="btnEventDetails">Asistencia</a>
                                 <button class="btnEventDetails btnEventEditar" data-imagen="{{ evento.imagen }}" data-descr="{{ evento.descr }}" data-id="{{ evento.id }}">Editar</button>
                                 <button class="btnEventRemove" data-id="{{ evento.id }}">
                                     <i class="fa-regular fa-trash-can"></i>

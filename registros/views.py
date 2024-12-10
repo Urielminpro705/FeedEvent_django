@@ -45,3 +45,38 @@ def NuevoRegistro(request, evento_id):
         )
         return HttpResponse(f"El usuario '{usuario.nombre}' se registro al evento", status=200)
     return redirect(reverse("eventos:evento", args=(evento_id,)))
+
+def Asistencia(request, evento_id):
+    evento = get_object_or_404(Evento, pk=evento_id)
+    id_usuario = request.session.get("feedID")
+    usuario = Usuario.objects.filter(id=id_usuario).first()
+    if not usuario:
+        return redirect('usuarios:login')
+    
+    if evento.Usuario != usuario:
+        return redirect('eventos:index')
+    
+    usuarios = Usuario.objects.filter(registro__idEvento=evento)
+    asistencias = Registro.objects.filter(idEvento=evento, asistencia=True)
+    usuarios_registrados = [asistencia.idUsuario for asistencia in asistencias]
+    print(usuarios_registrados)
+
+    if request.method == "POST":
+        lista_id = request.POST.dict()
+
+        usuarios_con_asistencia = [int(id or False) for id in lista_id if id != "csrfmiddlewaretoken"]
+        for id in usuarios_con_asistencia:
+            if id:
+                registro = Registro.objects.filter(idUsuario=id, idEvento=evento).first()
+                if registro:
+                    registro.asistencia = True
+                    registro.save()
+        
+        usuarios_no_asistentes = usuarios.exclude(id__in=usuarios_con_asistencia)
+        for usuario_no_asistente in usuarios_no_asistentes:
+            registro = Registro.objects.filter(idUsuario=usuario_no_asistente.id, idEvento=evento).first()
+            if registro:
+                registro.asistencia = False
+                registro.save()
+        return redirect(reverse("registros:asistencia", args=(evento.id,)))
+    return render(request, "asistencia.html", {"usuarios":usuarios, "evento":evento, "usuarios_registrados":usuarios_registrados})

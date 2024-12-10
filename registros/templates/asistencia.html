@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/prefix.css" %}">
+    <link rel="stylesheet" href="{% static "css/asistencia.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="shortcut icon" href="{% static "images/icon.png" %}" type="image/x-icon">
+    <title>Feed Event | Asistencias</title>
+</head>
+<body>
+    <nav>
+        <a href="/eventos/" class="navLink basicBtnLine">Salir del panel</a>
+        <p id="userNav">Pepe</p>
+    </nav>
+    <main>
+        <h1>Asistencias para el evento:</h1>
+        <h2>{{ evento.titulo }}</h2>
+        <form class="eventList" method="post">
+            {% csrf_token %}
+            {% for usuario in usuarios %}
+                <div class="eventItem">
+                    <p>{{ usuario.nombre }}</p>
+                    <div class="eventBtns">
+                        <label class="switch">
+                            <input 
+                                type="checkbox" 
+                                name="{{ usuario.id }}" 
+                                value="{{usuario.id}}"
+                                {% if usuario in usuarios_registrados %}checked{% endif %}
+                            >
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btnEventEditar">Enviar</button>
+        </form>
+    </main>
+</body>
+</html>
