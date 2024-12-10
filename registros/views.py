@@ -14,3 +14,6 @@ def Registros(request):
         "eventos": eventos
     }
     return render(request, "actividades_inscritas.html",context)
+
+# def NuevoRegistro(request):
+    
