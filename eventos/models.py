@@ -14,7 +14,7 @@ class Evento(models.Model):
     deportivos = models.IntegerField("Creditos deportivos", default=0)
     fechaCreacion = models.DateTimeField("Fecha y hora de creacion", null=False, blank=False)
     imagen = models.ImageField(upload_to="imagenes_eventos/", default="imagenes_eventos/imagen_default_evento.webp")
-    # idUsuario = models.ForeignKey(Usuario, on_delete=models.PROTECT)
+    Usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT, null=False, blank=False)
     horaInicio = models.TimeField("Hora de inicio", max_length=10, null=False, blank=False)
     horaFin = models.TimeField("Hora de finalizacion", max_length=10, null=False, blank=False)
 

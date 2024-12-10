@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/prefix.css" %}">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+    <title>Login | Feed Event</title>
+</head>
+<body>
+    <main>
+        <div class="mainSection">
+            <div id="contVideo" class="sombra">
+                <div id="textVideo">
+                    <h1>Encuentra tus eventos.</h1>
+                </div>
+                <video id="videoBanner" autoplay loop muted>
+                    <source src="{% static "videos/sportVideo.mp4" %}">
+                </video>    
+            </div>
+        </div>
+        <div class="mainSection">
+            <img id="logo" src="{% static "images/feedevent-logo-noBg.png" %}" height="100" alt="">
+            <form id="formLogin" class="login" method="POST">
+                {% csrf_token %}
+                <h2>Iniciar Sesión</h2>
+                <p>¿No tienes una cuenta? <a id="linkReg" href="{% url "usuarios:register" %}">Registrarse</a></p>
+                {% if request.GET.error == '1' %}
+                    <p style="color: red; margin: 0px; font-size: 12px;">Los datos ingresados no corresponden a ninguna cuenta.</p>
+                {% endif %}
+                <input class="basicImp1" name="correo" type="email" placeholder="Correo electrónico" required>
+                <input class="basicImp2" name="pass" type="password" placeholder="Contraseña" required>
+                <button class="basicBtn2" type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/login.js" %}"></script>
+</body>
+</html>

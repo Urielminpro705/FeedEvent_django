@@ -11,7 +11,7 @@ $(document).ready(function() {
             isNavOpen = false
         } else {
             let text = $('#navProfile').children().eq(2).text();
-            if(text == "Iniciar Sesión"){window.location = "login.php"; return}
+            if(text == "Iniciar Sesión"){window.location = "../usuarios/"; return}
             $("nav").addClass("dark-nav")
             cont_profile.addClass("navProfile-open")
             $('#logoFade').css('opacity','1')
