@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Evento
 from usuarios.models import Usuario
+from registros.models import Registro
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils import timezone
 from datetime import datetime
@@ -30,7 +31,8 @@ def Busqueda(request):
     return render(request, "index.html", context)
 
 def Panel(request):
-    usuario = request.session.get("CURRENT_USER")
+    id_usuario = request.session.get("feedID")
+    usuario = Usuario.objects.get(id=id_usuario)
     if not usuario:
         return redirect('usuarios:login')
     
@@ -59,11 +61,26 @@ def Panel(request):
 
 def EventoView(request, evento_id):
     evento = get_object_or_404(Evento, pk=evento_id)
-    context = {"evento":evento}
+    id_usuario = request.session.get("feedID")
+    usuario = Usuario.objects.get(id=id_usuario)
+
+    if usuario:
+        inscripcion = Registro.objects.filter(idUsuario=usuario, idEvento=evento).first()
+        if inscripcion:
+            estaInscrito = True
+        else:
+            estaInscrito = False
+    else:
+        estaInscrito = False
+    context = {
+        "evento": evento,
+        "estaInscrito": estaInscrito 
+    }
     return render(request, "publicacion.html", context)
 
 def EliminarEvento(request, evento_id):
-    usuario = request.session.get("CURRENT_USER")
+    id_usuario = request.session.get("feedID")
+    usuario = Usuario.objects.get(id=id_usuario)
     if not usuario:
         return redirect("eventos:index")
     if not usuario.admin:
@@ -75,7 +92,8 @@ def EliminarEvento(request, evento_id):
     return redirect("eventos:panel")
 
 def AgregarEvento(request):
-    usuario = request.session.get("CURRENT_USER")
+    id_usuario = request.session.get("feedID")
+    usuario = Usuario.objects.get(id=id_usuario)
     if not usuario:
         return HttpResponse("No hay una sesion iniciada", status=403)
     if not usuario.admin:
@@ -128,7 +146,8 @@ def AgregarEvento(request):
     return HttpResponse("Método no permitido", status=405)
 
 def ActualizarEvento(request, evento_id):
-    usuario = request.session.get("CURRENT_USER")
+    id_usuario = request.session.get("feedID")
+    usuario = Usuario.objects.get(id=id_usuario)
     if not usuario:
         return HttpResponse("No hay una sesion iniciada", status=403)
     if not usuario.admin:

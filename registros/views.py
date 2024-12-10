@@ -5,8 +5,11 @@ from eventos.models import Evento
 
 # Create your views here.
 def Registros(request):
-    registros = Registro.objects.filter(idUsuario=1)
-    eventos = registros.evento_set.order_by("-cuando")
+    usuario = request.session.get("CURRENT_USER")
+    eventos = []
+    if usuario:
+        registros = Registro.objects.filter(idUsuario=usuario)
+        eventos = registros.evento_set.order_by("-cuando")
     context = {
         "eventos": eventos
     }

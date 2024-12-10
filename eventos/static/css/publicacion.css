@@ -84,6 +84,20 @@ h1 {
     background-color: var(--hover);
 }
 
+#btn-inscrito{
+    height: 35px;
+    padding: 0;
+    width: 150px;
+    margin-top: 20px;
+    border-radius: 7px;
+    border: 2px solid transparent;
+    font-weight: 600;
+    color: var(--primario);
+    background-color: var(--tag3);
+    user-select: none;
+    font-size: 0.9rem;
+}
+
 .cont-list {
     padding-inline: 20px;
     padding-bottom: 20px;    

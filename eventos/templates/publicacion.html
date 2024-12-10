@@ -28,9 +28,15 @@
             </div>
             <p class="descripcion-titulo">Descripción</p>
             <p class="descripcion-txt">{{ evento.descr }}</p>
-            <button id="btn-registro" data-id="">
-                Registrarse
-            </button>
+            {% if estaInscrito %}
+                <div id="#btn-inscrito">
+                    Inscrito
+                </div>
+            {% else %}
+                <button id="btn-registro" data-id="{{ CURRENT_USER.id }}">
+                    Registrarse
+                </button>
+            {% endif %}
         </div>
         <div class="cont-list cont-detalles-publicacion">
             <p>Detalles</p>
