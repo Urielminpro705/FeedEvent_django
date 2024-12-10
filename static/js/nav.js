@@ -11,20 +11,13 @@ $(document).ready(function() {
             isNavOpen = false
         } else {
             let text = $('#navProfile').children().eq(2).text();
-            if(text == "Iniciar Sesión"){window.location = "../usuarios/"; return}
+            if(text == "Iniciar Sesión"){window.location = "/usuarios/"; return}
             $("nav").addClass("dark-nav")
             cont_profile.addClass("navProfile-open")
             $('#logoFade').css('opacity','1')
             isNavOpen = true
         }
     }   
-
-    $('#navLogo').on('click',function(){
-        if(typeof doNotGoToOtherPlacePieceOfShit !== 'undefined'){
-            return;
-        }
-        window.location = "index.php";
-    });
 
     nav_btn.click(function() {
         switchNav()

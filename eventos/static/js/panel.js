@@ -2,27 +2,6 @@ let currentEventIndex = 0;
 let lastCurrentEventIndex = -1;
 $(document).ready(function(){
 
-    //#region //* Subir un evento
-    
-
-    // function getCookie(name) {
-    //     let cookieValue = null;
-    //     if (document.cookie && document.cookie !== '') {
-    //         const cookies = document.cookie.split(';');
-    //         for (let i = 0; i < cookies.length; i++) {
-    //             const cookie = cookies[i].trim();
-    //             // Busca el nombre del cookie
-    //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
-    //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     return cookieValue;
-    // }    
-    
-    // const csrfToken2 = getCookie('csrftoken');
-
     let tokenInput = $("input[name='csrfmiddlewaretoken']")
     const csrfToken = tokenInput.val();
     tokenInput.remove();

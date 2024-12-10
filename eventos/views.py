@@ -32,7 +32,7 @@ def Busqueda(request):
 
 def Panel(request):
     id_usuario = request.session.get("feedID")
-    usuario = Usuario.objects.get(id=id_usuario)
+    usuario = Usuario.objects.filter(id=id_usuario).first()
     if not usuario:
         return redirect('usuarios:login')
     
@@ -62,7 +62,7 @@ def Panel(request):
 def EventoView(request, evento_id):
     evento = get_object_or_404(Evento, pk=evento_id)
     id_usuario = request.session.get("feedID")
-    usuario = Usuario.objects.get(id=id_usuario)
+    usuario = Usuario.objects.filter(id=id_usuario).first()
 
     if usuario:
         inscripcion = Registro.objects.filter(idUsuario=usuario, idEvento=evento).first()
@@ -80,7 +80,7 @@ def EventoView(request, evento_id):
 
 def EliminarEvento(request, evento_id):
     id_usuario = request.session.get("feedID")
-    usuario = Usuario.objects.get(id=id_usuario)
+    usuario = Usuario.objects.filter(id=id_usuario).first()
     if not usuario:
         return redirect("eventos:index")
     if not usuario.admin:
@@ -93,7 +93,7 @@ def EliminarEvento(request, evento_id):
 
 def AgregarEvento(request):
     id_usuario = request.session.get("feedID")
-    usuario = Usuario.objects.get(id=id_usuario)
+    usuario = Usuario.objects.filter(id=id_usuario).first()
     if not usuario:
         return HttpResponse("No hay una sesion iniciada", status=403)
     if not usuario.admin:
@@ -147,7 +147,7 @@ def AgregarEvento(request):
 
 def ActualizarEvento(request, evento_id):
     id_usuario = request.session.get("feedID")
-    usuario = Usuario.objects.get(id=id_usuario)
+    usuario = Usuario.objects.filter(id=id_usuario).first()
     if not usuario:
         return HttpResponse("No hay una sesion iniciada", status=403)
     if not usuario.admin:

@@ -96,6 +96,8 @@ h1 {
     background-color: var(--tag3);
     user-select: none;
     font-size: 0.9rem;
+    align-content: center;
+    text-align: center;
 }
 
 .cont-list {

@@ -11,6 +11,11 @@
 </head>
 <body>
     {% include "nav.html" %}
+    {% csrf_token %}
+    <div id="contModal" class="basicContModal" style="display: none;">
+        <div id="modal" class="basicModal" style="animation-duration: 0.5s;">
+        </div>
+    </div>
     <main>
         <div class="img-publicacion" style="background-image: url({{ evento.imagen.url }});"></div>
         <div class="cont-info-publicacion">
@@ -29,7 +34,7 @@
             <p class="descripcion-titulo">Descripción</p>
             <p class="descripcion-txt">{{ evento.descr }}</p>
             {% if estaInscrito %}
-                <div id="#btn-inscrito">
+                <div id="btn-inscrito">
                     Inscrito
                 </div>
             {% else %}
@@ -89,6 +94,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static "js/nav.js" %}"></script>
+    <script src="{% static "js/publicacion.js" %}"></script>
     <script src="https://kit.fontawesome.com/5049a1cee4.js" crossorigin="anonymous"></script>
 </body>
 </html>
