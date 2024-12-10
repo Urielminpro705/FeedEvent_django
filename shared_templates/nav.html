@@ -27,9 +27,9 @@
                         <a href="{% url 'eventos:panel' %}"><i class="fa-solid fa-calendar-days"></i> Administrar Eventos</a>
                     </li>
                 {% endif %}
-                {% if CURRENT_USER.superuser %}
+                {% if CURRENT_USER.superUser %}
                     <li>
-                        <a href="{% url 'usuarios:grant_superuser' %}"><i class="fa-solid fa-key"></i>Conceder SuperUsuario</a>
+                        <a href="{% url 'usuarios:grant_superuser' %}"><i class="fa-solid fa-key"></i>Conceder admin</a>
                     </li>
                 {% endif %}
                 <li>
