@@ -58,7 +58,7 @@ def RegisterView(request):
             carrera = carrera
         )
 
-        return redirect("usuarios:loginss")
+        return redirect("usuarios:logins")
     else:
         return render(request, "register.html")
 
