@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Otorgar SuperUsuario</title>
+</head>
+<body>
+    <h1>Otorgar Estatus de SuperUsuario</h1>
+
+    {% if usuarios %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="usuario">Selecciona un usuario:</label>
+            <select name="usuario_id" id="usuario" required>
+                {% for usuario in usuarios %}
+                    <option value="{{ usuario.id }}">{{ usuario.nombre }} - {{ usuario.correo }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Otorgar SuperUsuario</button>
+        </form>
+    {% else %}
+        <p>No hay usuarios disponibles para otorgar el estatus.</p>
+    {% endif %}
+</body>
+</html>
