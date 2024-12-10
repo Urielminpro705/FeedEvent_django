@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/prefix.css' %}">
+    <link rel="stylesheet" href="{% static 'css/superuser.css' %}">
+    <title>Feed Event - Asignar SuperUsuario</title>
+</head>
+<body>
+    <div class="container">
+        <img id="logo" src="{% static 'images/feedevent-logo-noBg.png' %}" height="100" alt="Logo">
+        <form id="formGrantSuperUser" method="POST">
+            {% csrf_token %}
+            <h2>Conceder SuperUsuario</h2>
+            <p>Selecciona un usuario y asígnale privilegios de SuperUsuario.</p>
+            {% if mensaje %}
+                <p class="error-message">{{ mensaje }}</p>
+            {% endif %}
+            <select class="basicSelect" name="usuario_id" required>
+                <option value="" disabled selected>--Selecciona un usuario --</option>
+                {% for usuario in usuarios %}
+                    <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
+                {% endfor %}
+            </select>            
+            <button class="basicBtn2" type="submit">Asignar</button>
+        </form>
+    </div>
+</body>
+</html>

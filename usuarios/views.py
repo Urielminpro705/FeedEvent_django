@@ -58,7 +58,7 @@ def RegisterView(request):
             carrera = carrera
         )
 
-        return redirect("usuarios:logins")
+        return redirect("usuarios:login")
     else:
         return render(request, "register.html")
 
@@ -70,3 +70,35 @@ class LogoutView(View):
     def get(self, request):
         request.session['feedID'] = None
         return redirect('eventos:index')
+    
+class GrantSuperUserView(View):
+    def get(self, request):
+        id_actual = request.session.get('feedID')
+        if not id_actual:
+            return redirect('usuarios:login')
+        
+        usr_actual = Usuario.objects.filter(id=id_actual).first()
+        if not usr_actual or not usr_actual.is_admin:
+            return HttpResponse("No se tienen los permisos para realizar esta acción.", status=403)
+        
+        usuarios = Usuario.objects.filter(superUser=False).exclude(id=id_actual)
+        return render(request, "grant_superuser.html", {"usuarios": usuarios})
+    
+    def post(self, request):
+        id_actual = request.session.get('feedID')
+        if not id_actual:
+            return redirect('usuarios:login')
+        
+        usr_actual = Usuario.objects.filter(id=id_actual).first()
+        if not usr_actual or not usr_actual.is_admin:
+            return HttpResponse("No se tienen los permisos para realizar esta acción.", status=403)
+        
+        usuario_id = request.POST.get("usuario_id")
+        usuario = Usuario.objects.filter(id=usuario_id).first()
+        if not usuario:
+            return HttpResponse("El usuario no existe.", status=200)
+        
+        usuario.superUser = True
+        usuario.save()
+
+        return HttpResponse("¡Los permisos se han otorgado correctamente!", status=404)
