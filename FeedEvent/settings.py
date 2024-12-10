@@ -79,11 +79,14 @@ WSGI_APPLICATION = 'FeedEvent.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'FeedEvent',
+        'USER': 'django',
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',  # o la dirección de tu servidor MySQL
+        'PORT': '3306',  # el puerto por defecto de MySQL
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
