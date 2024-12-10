@@ -58,7 +58,7 @@ def RegisterView(request):
             carrera = carrera
         )
 
-        return redirect("usuarios:logins")
+        return redirect("usuarios:login")
     else:
         return render(request, "register.html")
 
@@ -81,7 +81,7 @@ class GrantSuperUserView(View):
         if not usr_actual or not usr_actual.is_admin:
             return HttpResponse("No se tienen los permisos para realizar esta acción.", status=403)
         
-        usuarios = Usuario.objects.all().exclude(id=id_actual)
+        usuarios = Usuario.objects.filter(superUser=False).exclude(id=id_actual)
         return render(request, "grant_superuser.html", {"usuarios": usuarios})
     
     def post(self, request):
@@ -96,9 +96,9 @@ class GrantSuperUserView(View):
         usuario_id = request.POST.get("usuario_id")
         usuario = Usuario.objects.filter(id=usuario_id).first()
         if not usuario:
-            return HttpResponse("El usuario no existe.", status=404)
+            return HttpResponse("El usuario no existe.", status=200)
         
         usuario.superUser = True
         usuario.save()
 
-        return redirect("usuarios:grant_superuser")
+        return HttpResponse("¡Los permisos se han otorgado correctamente!", status=404)

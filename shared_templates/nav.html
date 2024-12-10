@@ -20,11 +20,14 @@
                     <a href="{% url 'usuarios:profile' %}"><i class="fa-solid fa-id-card"></i> Ver Perfil</a>
                 </li>
                 <li>
-                    <a href="{% url "registros:registros" %}"><i class="fa-solid fa-calendar-day"></i> Actividades Pendientes</a>
+                    <a href="{% url 'registros:registros' %}"><i class="fa-solid fa-calendar-day"></i> Actividades Pendientes</a>
                 </li>
                 {% if CURRENT_USER.admin %}
                     <li>
-                        <a href="{% url "eventos:panel" %}"><i class="fa-solid fa-calendar-days"></i> Administrar Eventos</a>
+                        <a href="{% url 'eventos:panel' %}"><i class="fa-solid fa-calendar-days"></i> Administrar Eventos</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'usuarios:grant_superuser' %}"><i class="fa-solid fa-key"></i>Conceder SuperUsuario</a>
                     </li>
                 {% endif %}
                 <li>
